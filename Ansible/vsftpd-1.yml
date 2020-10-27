@@ -1,0 +1,17 @@
+---
+- name: disable vsftpd
+  hosts: all
+  tasks:
+        - name: stop vsftpd
+          service:
+             name: vsftpd 
+             state: stopped
+
+        - name: disable vsftpd
+          service: name=vsftpd enabled=no
+
+        - name: create readme file
+          copy:
+            content: " FTP server doesn't run now "
+            dest: /var/ftp/pub/README
+...    
