@@ -1,0 +1,17 @@
+---
+- name: httpd and vsftpd and ssh are running
+
+  hosts: all  
+
+  vars:
+    web_services:
+      - httpd
+      - vsftpd
+      - sshd
+
+  tasks:
+    - service:
+        name: "{{ item }}"
+        state: started
+      with_items: "{{ web_services }}"
+...
